@@ -1,4 +1,4 @@
-// global styles and changing bulma variables
+// global styles and bulma variables
 
 // Import Google Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Lato:400,800,900');
@@ -19,6 +19,5 @@ body {
 html {
     background-image: url('./assets/background.svg');
     background-size: cover;
-
     overflow-y: auto !important;
 }

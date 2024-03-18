@@ -1,18 +1,15 @@
-import { Item } from "./item.model";
-
 /**
  * State model
  */
 export interface AppState {
-  entities: object; // { (item).id: Item }
+  entities: object;
   todo: number[];
   doing: number[];
   done: number[];
 }
 
 /**
- * State initial shape
- * @returns {AppState}
+ * State initial
  */
 export const initializeState = (): AppState => {
   return {

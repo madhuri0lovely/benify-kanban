@@ -16,18 +16,15 @@
   -webkit-text-fill-color: transparent;
 }
 
-
 .board {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   min-width: 0;
   min-height: 0;
-
   .board-bar {
       background: rgba(gray, 0.5);
       padding: 8px 15px;
-
       .board-name {
           font-size: 20px;
           font-weight: bold;
@@ -39,29 +36,22 @@
       display: flex;
       flex-grow: 1;
       overflow-x: auto;
-
       .board-columns {
           display: flex;
           flex-grow: 1;
-
           .board-column {
               display: flex;
               flex-direction: column;
               flex-grow: 1;
               flex-basis: 0;
-
               min-width: 300px;
               margin: 50px;
               padding: 25px;
-
               border-radius: 4px;
-
               background: rgba(white, 0.5);
-
               &:not(:first-child) {
                   margin-left: 0;
               }
-
               .column-title {
                   font-size: 20px;
                   font-weight: 800;
@@ -74,21 +64,13 @@
   }
 }
 
-
-.tasks-container {
-  flex-grow: 1;
-  overflow-y: auto;
-}
-
 .task {
   display: flex;
   padding: 15px 12px;
-  background: white;
+  background: #FFFFFF;
   border-bottom: solid 1px #ddd;
   border-radius: 4px;
-
   margin-bottom: 15px;
-
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
       0 3px 14px 2px rgba(0, 0, 0, 0.05);
 }
@@ -104,7 +86,7 @@ mat-card {
 
 .mat-mdc-raised-button.mat-primary {
   --mdc-protected-button-container-color: #3f51b5;
-  --mdc-protected-button-label-text-color: white;
-  --mat-protected-button-state-layer-color: white;
+  --mdc-protected-button-label-text-color: #FFFFFF;
+  --mat-protected-button-state-layer-color: #FFFFFF;
   --mat-protected-button-ripple-color: rgba(255, 255, 255, .1)
 }

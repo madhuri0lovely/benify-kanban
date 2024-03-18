@@ -1,23 +1,12 @@
-import ItemAction, {
-  default as PayloadAction,
-  DELETE_ITEM,
+import {
+  default as PayloadAction
 } from "./app.actions";
-
 import { Item } from "./item.model";
 import { AppState, initializeState } from "./app.state";
 import * as AppActions from "./app.actions";
 import { Action } from "@ngrx/store";
 
 const initialState = initializeState();
-
-// State reference
-// AppState = {
-//   entities: {};
-//   todo: number[];
-//   doing: number[];
-//   done: number[];
-// }
-///////////////////////
 
 export function AppReducer(state: AppState = initialState, action: Action) {
   switch (action.type) {
@@ -26,11 +15,9 @@ export function AppReducer(state: AppState = initialState, action: Action) {
      */
     case AppActions.CREATE_ITEM:
       const newEntities = JSON.parse(JSON.stringify(state.entities));
-
       const item = (action as PayloadAction<Item>).payload;
       const key = item.id;
       newEntities[key] = item;
-
       return {
         ...state,
         entities: newEntities,
@@ -38,7 +25,7 @@ export function AppReducer(state: AppState = initialState, action: Action) {
 
     case AppActions.GET_ITEM:
       const id = (action as PayloadAction<Item>).payload;
-      return { ...state, Loaded: false, Loading: true };
+      return { ...state };
 
     /**
      * Todo list
@@ -49,13 +36,12 @@ export function AppReducer(state: AppState = initialState, action: Action) {
       if (newTodo.indexOf(toAddTodo) === -1) {
         newTodo.push(toAddTodo);
       }
-
       return {
         ...state,
         todo: newTodo,
       };
 
-    case AppActions.REM_TODO:
+    case AppActions.REMOVE_TODO:
       const idToRemove = (action as PayloadAction<number>).payload;
       return {
         ...state,
@@ -76,7 +62,7 @@ export function AppReducer(state: AppState = initialState, action: Action) {
         doing: newDoing,
       };
 
-    case AppActions.REM_DOING:
+    case AppActions.REMOVE_DOING:
       const idToRemoveDoing = (action as PayloadAction<number>).payload;
       return {
         ...state,
@@ -98,7 +84,7 @@ export function AppReducer(state: AppState = initialState, action: Action) {
         done: newDone,
       };
 
-    case AppActions.REM_DONE:
+    case AppActions.REMOVE_DONE:
       const idToRemoveDone = (action as PayloadAction<number>).payload;
       return {
         ...state,

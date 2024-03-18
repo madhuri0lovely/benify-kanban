@@ -6,15 +6,13 @@
       </div>
     </div>
   </div>
-
   <div class="board">
     <div class="board-bar">
-      <p class="board-name">Kanban Board</p>
+      <h2 class="board-name">Kanban Board</h2>
       <button mat-raised-button color="primary" (click)="openDialog()">
         Create New
       </button>
     </div>
-
     <div class="board-wrapper">
       <div class="board-columns">
         <div class="board-column">
@@ -23,14 +21,14 @@
             *ngFor="let card of todoList$ | async"
             class="task"
             mat-button
-            [matMenuTriggerFor]="menu"
+            [matMenuTriggerFor]="todoMenu"
           >
             {{ card.text }}
-            <mat-menu #menu="matMenu">
+            <mat-menu #todoMenu="matMenu">
               <button mat-menu-item (click)="moveToDoing(card.id)">
-                doing
+                Doing
               </button>
-              <button mat-menu-item (click)="moveToDone(card.id)">done</button>
+              <button mat-menu-item (click)="moveToDone(card.id)">Done</button>
             </mat-menu>
           </mat-card>
         </div>
@@ -41,12 +39,12 @@
             *ngFor="let card of doingList$ | async"
             class="task"
             mat-button
-            [matMenuTriggerFor]="menu"
+            [matMenuTriggerFor]="doingMenu"
           >
             {{ card.text }}
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="moveToDone(card.id)">done</button>
-              <button mat-menu-item (click)="moveToTodo(card.id)">todo</button>
+            <mat-menu #doingMenu="matMenu">
+              <button mat-menu-item (click)="moveToDone(card.id)">Done</button>
+              <button mat-menu-item (click)="moveToTodo(card.id)">To Do</button>
             </mat-menu>
           </mat-card>
         </div>
@@ -57,13 +55,13 @@
             *ngFor="let card of doneList$ | async"
             class="task"
             mat-button
-            [matMenuTriggerFor]="menu"
+            [matMenuTriggerFor]="doneMenu"
           >
             {{ card.text }}
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="moveToTodo(card.id)">todo</button>
+            <mat-menu #doneMenu="matMenu">
+              <button mat-menu-item (click)="moveToTodo(card.id)">To Do</button>
               <button mat-menu-item (click)="moveToDoing(card.id)">
-                doing
+                Doing
               </button>
             </mat-menu>
           </mat-card>

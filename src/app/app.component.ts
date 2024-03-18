@@ -10,11 +10,10 @@ import {
   ADD_DOING,
   ADD_DONE,
   CREATE_ITEM,
-  CreateItem,
   default as PayloadAction,
-  REM_TODO,
-  REM_DOING,
-  REM_DONE,
+  REMOVE_TODO,
+  REMOVE_DOING,
+  REMOVE_DONE,
 } from "./store/app.actions";
 import { DialogComponent } from "./dialog/dialog.component";
 import { MatDialog } from "@angular/material/dialog";
@@ -40,39 +39,48 @@ export class AppComponent implements OnInit {
     this.doneList$ = this.store.select(getDone);
   }
 
+  /**
+   * When moving the task to To Do column
+   */
   moveToTodo(id: number) {
     const addTodo: PayloadAction<number> = {
       type: ADD_TODO,
       payload: id,
     };
-    const remDoing: PayloadAction<number> = { type: REM_DOING, payload: id };
-    const remDone: PayloadAction<number> = { type: REM_DONE, payload: id };
+    const removeDoing: PayloadAction<number> = { type: REMOVE_DOING, payload: id };
+    const removeDone: PayloadAction<number> = { type: REMOVE_DONE, payload: id };
     this.store.dispatch(addTodo);
-    this.store.dispatch(remDoing);
-    this.store.dispatch(remDone);
+    this.store.dispatch(removeDoing);
+    this.store.dispatch(removeDone);
   }
 
+  /**
+   * When moving the task to Doing column
+   */
   moveToDoing(id: number) {
-    const remTodo: PayloadAction<number> = {
-      type: REM_TODO,
+    const removeTodo: PayloadAction<number> = {
+      type: REMOVE_TODO,
       payload: id,
     };
     const addDoing: PayloadAction<number> = { type: ADD_DOING, payload: id };
-    const remDone: PayloadAction<number> = { type: REM_DONE, payload: id };
-    this.store.dispatch(remTodo);
+    const removeDone: PayloadAction<number> = { type: REMOVE_DONE, payload: id };
+    this.store.dispatch(removeTodo);
     this.store.dispatch(addDoing);
-    this.store.dispatch(remDone);
+    this.store.dispatch(removeDone);
   }
 
+  /**
+   * When moving the task to To Done column
+   */
   moveToDone(id: number) {
-    const remTodo: PayloadAction<number> = {
-      type: REM_TODO,
+    const removeTodo: PayloadAction<number> = {
+      type: REMOVE_TODO,
       payload: id,
     };
-    const remDoing: PayloadAction<number> = { type: REM_DOING, payload: id };
+    const removeDoing: PayloadAction<number> = { type: REMOVE_DOING, payload: id };
     const addDone: PayloadAction<number> = { type: ADD_DONE, payload: id };
-    this.store.dispatch(remTodo);
-    this.store.dispatch(remDoing);
+    this.store.dispatch(removeTodo);
+    this.store.dispatch(removeDoing);
     this.store.dispatch(addDone);
   }
 
@@ -92,6 +100,9 @@ export class AppComponent implements OnInit {
     });
   }
 
+  /**
+   * When creating new task or story
+   */
   createItem(text: string) {
     const card = {
       id: this.currentCardNum++,

@@ -10,7 +10,6 @@ import { MatListModule } from "@angular/material/list";
 import { MatMenuModule } from "@angular/material/menu";
 import { StoreModule } from "@ngrx/store";
 import { AppReducer } from "./store/app.reducers";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { DialogComponent } from "./dialog/dialog.component";
 import { FormsModule } from "@angular/forms";
 import {MatInputModule} from '@angular/material/input';
@@ -29,15 +28,10 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     FormsModule,
     MatInputModule,
-
     // Store
     StoreModule.forRoot({
       kanban: AppReducer,
-    }),
-    // Instrumentation must be imported after importing StoreModule (config is optional)
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-    }),
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
